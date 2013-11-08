@@ -27,7 +27,6 @@ define :uwsgi_service,
   host = params[:host]
   port = params[:port]
   worker_processes = params[:worker_processes]
-  app = params[:app]
   uid = params[:uid]
   gid = params[:gid]
   extra_params = ""
