@@ -45,6 +45,10 @@ define :uwsgi_service,
   extra_params += " --stats %s" % [params[:stats]] if params[:stats]
   extra_params += " --emperor %s" % [params[:emperor]] if params[:emperor]
   extra_params += " --buffer-size %s" % [params[:buffer_size]] if params[:buffer_size]
+  extra_params += " --ini %s" % [params[:ini]] if params[:ini]
+  extra_params += " --xml %s" % [params[:xml]] if params[:xml]
+  extra_params += " --yaml %s" % [params[:yaml]] if params[:yaml]
+  extra_params += " --json %s" % [params[:json]] if params[:json]
   
   runit_service "uwsgi-#{params[:name]}" do
     run_template_name "uwsgi"
