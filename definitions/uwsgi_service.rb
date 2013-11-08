@@ -4,7 +4,6 @@ define :uwsgi_service,
     :host => "127.0.0.1", 
     :port => 8080, 
     :worker_processes => 2, 
-    :app => "main:app",
     :uid => "www-data",
     :gid => "www-data",
     :master => false,
@@ -32,6 +31,7 @@ define :uwsgi_service,
   uid = params[:uid]
   gid = params[:gid]
   extra_params = ""
+  extra_params += " -w %s" % [params[:app]] if params[:app]
   extra_params += " --master" if params[:master]
   extra_params += " --lazy" if params[:lazy]
   extra_params += " --no-orphans" if params[:no_orphans]
@@ -60,7 +60,6 @@ define :uwsgi_service,
       :host => host,
       :port => port,
       :worker_processes => worker_processes,
-      :app => app,
       :uid => uid,
       :gid => gid,
       :extra_params => extra_params
