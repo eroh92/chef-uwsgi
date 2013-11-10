@@ -50,6 +50,7 @@ define :uwsgi_service,
   extra_params += " --json %s" % [params[:json]] if params[:json]
   
   runit_service "uwsgi-#{params[:name]}" do
+    service_name "uwsgi"
     run_template_name "uwsgi"
     log_template_name "uwsgi"
     cookbook "uwsgi"
