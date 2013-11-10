@@ -15,5 +15,4 @@ exec $UWSGI \
 --uid <%= @options[:uid] %> \
 --gid <%= @options[:gid] %> \
 --pidfile $PID \
---processes=<%= @options[:worker_processes] %><%= @options[:extra_params] %> \
--w <%= @options[:app] %>
+--processes=<%= @options[:worker_processes] %><%= @options[:extra_params] %>
