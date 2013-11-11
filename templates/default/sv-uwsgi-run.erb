@@ -4,6 +4,9 @@ UWSGI=/usr/local/bin/uwsgi
 ROOT=<%= @options[:home_path] %>
 PID=<%= @options[:pid_path] %>
 
+echo "activating virtualenv"
+. <%= @options[:home_path] %>/bin/activate
+
 if [ -f $PID ]; then kill -9 `cat $PID`; rm $PID; fi
 
 cd $ROOT
