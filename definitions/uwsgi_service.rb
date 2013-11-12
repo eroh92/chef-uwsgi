@@ -24,6 +24,7 @@ define :uwsgi_service,
 
   if not params[:uwsgi_path]
     params[:uwsgi_path] = node[:uwsgi][:path]
+  end
 
   # need to assign params to local vars as we can't pass params to nested definitions
   home_path = params[:home_path]
