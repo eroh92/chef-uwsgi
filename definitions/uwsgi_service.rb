@@ -1,7 +1,7 @@
 define :uwsgi_service, 
     :home_path => "/var/www/app", 
     :pid_path => "/var/run/uwsgi-app.pid", 
-    :uwsgi_path => node[:uwsgi][:path],
+    :uwsgi_path => false,
     :host => "127.0.0.1", 
     :port => 8080, 
     :worker_processes => 2, 
@@ -21,6 +21,9 @@ define :uwsgi_service,
     :enable_threads => false,
     :buffer_size => nil do
   include_recipe "runit"
+
+  if not params[:uwsgi_path]
+    params[:uwsgi_path] = node[:uwsgi][:path]
 
   # need to assign params to local vars as we can't pass params to nested definitions
   home_path = params[:home_path]
