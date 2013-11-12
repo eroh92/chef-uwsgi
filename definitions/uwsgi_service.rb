@@ -53,6 +53,7 @@ define :uwsgi_service,
   extra_params += " --xml %s" % [params[:xml]] if params[:xml]
   extra_params += " --yaml %s" % [params[:yaml]] if params[:yaml]
   extra_params += " --json %s" % [params[:json]] if params[:json]
+  extra_params += " --http %s" % [params[:http]] if params[:http]
   
   runit_service "uwsgi" do
     service_name "uwsgi"
