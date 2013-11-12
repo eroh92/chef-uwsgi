@@ -1,7 +1,7 @@
 define :uwsgi_service, 
     :home_path => "/var/www/app", 
     :pid_path => "/var/run/uwsgi-app.pid", 
-    :uwsgi_path => node[:uwsgi][:path]
+    :uwsgi_path => node[:uwsgi][:path],
     :host => "127.0.0.1", 
     :port => 8080, 
     :worker_processes => 2, 
