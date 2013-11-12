@@ -1,6 +1,6 @@
 #!/bin/sh
 
-UWSGI=/usr/local/bin/uwsgi
+UWSGI=<%= @options[:uwsgi_path] %>
 ROOT=<%= @options[:home_path] %>
 PID=<%= @options[:pid_path] %>
 

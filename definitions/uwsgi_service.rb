@@ -1,6 +1,7 @@
 define :uwsgi_service, 
     :home_path => "/var/www/app", 
     :pid_path => "/var/run/uwsgi-app.pid", 
+    :uwsgi_path => node[:uwsgi][:path]
     :host => "127.0.0.1", 
     :port => 8080, 
     :worker_processes => 2, 
@@ -55,6 +56,7 @@ define :uwsgi_service,
     log_template_name "uwsgi"
     cookbook "uwsgi"
     options ({
+      :uwsgi_path => uwsgi_path,
       :home_path => home_path,
       :pid_path => pid_path,
       :host => host,
