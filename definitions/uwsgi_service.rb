@@ -54,12 +54,14 @@ define :uwsgi_service,
   extra_params += " --http %s" % [params[:http]] if params[:http]
   extra_params += " --socket %s:%s" % [params[:host], params[:port]] if params[:host] and params[:port]
   
-  runit_service "uwsgi" do
-    service_name "uwsgi"
-    run_template_name "uwsgi"
-    log_template_name "uwsgi"
-    cookbook "uwsgi"
-    options ({
+
+  template "/etc/init/uwsgi-#{params[:name]}.conf" do
+    source "uwsgi.conf.erb"
+    mode 0644
+    backup false
+    owner "root"
+    group "root"
+    variables({
       :uwsgi_path => uwsgi_path,
       :home_path => home_path,
       :pid_path => pid_path,
@@ -68,5 +70,17 @@ define :uwsgi_service,
       :gid => gid,
       :extra_params => extra_params
     })
+    action :create_if_missing
+  end
+
+  execute "reload-initctl" do
+    command "initctl reload-configuration"
+    action :run
+  end
+
+  service "uwsgi-#{params[:name]}" do
+    supports :start => true, :stop => true, :restart => true
+    provider Chef::Provider::Service::Upstart
+    action [:enable, :start]
   end
 end

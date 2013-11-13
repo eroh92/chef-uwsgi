@@ -1,0 +1,24 @@
+# Emperor uWSGI Upstart script
+# This file is managed by Chef for <%= node['fqdn'] %>
+
+description "uWSGI Emperor"
+
+start on [2345]
+stop on runlevel [06]
+
+respawn
+respawn limit 10 5
+
+UWSGI=<%= @options[:uwsgi_path] %>
+ROOT=<%= @options[:home_path] %>
+PID=<%= @options[:pid_path] %>
+
+cd $ROOT
+exec 2>&1
+exec $UWSGI \
+--env LC_ALL="en_US.UTF-8" \
+--env LANG="en_US.UTF-8" \
+--uid <%= @options[:uid] %> \
+--gid <%= @options[:gid] %> \
+--pidfile $PID \
+--processes=<%= @options[:worker_processes] %><%= @options[:extra_params] %>
