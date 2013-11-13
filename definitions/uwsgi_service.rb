@@ -59,7 +59,7 @@ define :uwsgi_service,
     log_template_name "uwsgi"
     cookbook "uwsgi"
     options ({
-      :uwsgi_path => uwsgi_path,
+      :uwsgi_path => params[:uwsgi_path],
       :home_path => home_path,
       :pid_path => pid_path,
       :host => host,
