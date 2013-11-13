@@ -26,6 +26,7 @@ define :uwsgi_service,
   # need to assign params to local vars as we can't pass params to nested definitions
   home_path = params[:home_path]
   pid_path = params[:pid_path]
+  uwsgi_path = params[:uwsgi_path]
   host = params[:host]
   port = params[:port]
   worker_processes = params[:worker_processes]
@@ -59,11 +60,9 @@ define :uwsgi_service,
     log_template_name "uwsgi"
     cookbook "uwsgi"
     options ({
-      :uwsgi_path => params[:uwsgi_path],
+      :uwsgi_path => uwsgi_path,
       :home_path => home_path,
       :pid_path => pid_path,
-      :host => host,
-      :port => port,
       :worker_processes => worker_processes,
       :uid => uid,
       :gid => gid,
