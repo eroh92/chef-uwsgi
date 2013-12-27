@@ -62,6 +62,7 @@ define :uwsgi_service,
     owner "root"
     group "root"
     variables({
+      :name => params[:name],
       :uwsgi_path => uwsgi_path,
       :home_path => home_path,
       :pid_path => pid_path,
