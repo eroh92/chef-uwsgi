@@ -71,7 +71,6 @@ define :uwsgi_service,
       :gid => gid,
       :extra_params => extra_params
     })
-    action :create_if_missing
   end
 
   execute "reload-initctl" do
