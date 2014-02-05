@@ -14,6 +14,7 @@ define :uwsgi_service,
     :lazy => false,
     :disable_logging => false,
     :threads => nil,
+    :newrelic => false,
     :harakiri => nil,
     :stats => nil,
     :emperor => nil,
@@ -69,6 +70,7 @@ define :uwsgi_service,
       :worker_processes => worker_processes,
       :uid => uid,
       :gid => gid,
+      :newrelic => newrelic,
       :extra_params => extra_params
     })
   end
