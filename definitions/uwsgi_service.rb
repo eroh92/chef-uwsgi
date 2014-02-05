@@ -33,6 +33,7 @@ define :uwsgi_service,
   worker_processes = params[:worker_processes]
   uid = params[:uid]
   gid = params[:gid]
+  newrelic = params[:newrelic]
   extra_params = ""
   extra_params += " -w %s" % [params[:app]] if params[:app]
   extra_params += " --master" if params[:master]
